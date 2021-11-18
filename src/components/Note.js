@@ -5,7 +5,7 @@ import { useState } from "react";
 import Modal from "./Modal";          
 import { BsFillBrushFill } from 'react-icons/bs';
 
-const Note = ({ handleUpdateClick, id, text, date, handleDeleteNote }) => {
+const Note = ({ handleUpdateClick, id, type, text, date, handleDeleteNote }) => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [noteText,setNoteText] = useState('');
