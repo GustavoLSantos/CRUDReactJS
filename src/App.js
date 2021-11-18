@@ -5,8 +5,6 @@ import Search from "./components/Search";
 import Header from "./components/Header";
 
 import Modal from "./components/Modal"; 
-
-
                 
 
 const App = () => {
@@ -36,6 +34,10 @@ const App = () => {
 ]);
 
   const [searchText, setSearchText] = useState('');
+  const [showHomeComponent, setShowHomeComponent] = useState(false);
+  const [showWorkComponent, setShowWorkComponent] = useState(false);
+  const [showPersonalComponent, setShowPersonalComponent] = useState(false);
+  const [showComponent, setShowComponent] = useState(false);
 
   const [darkMode, setDarkMode] = useState(false);
 
@@ -50,6 +52,8 @@ const App = () => {
     localStorage.setItem('react-notes-app-data', JSON.stringify(notes))
   }, [notes]);
 
+//Create
+
   const AddNote = (text) => {
     const date = new Date();
     const newNote = {
@@ -61,23 +65,14 @@ const App = () => {
     setNotes(newNotes);
   }
 
+//Delete
+
   const deleteNote = (id) => {
     const newNotes = notes.filter((note)=> note.id !== id);
     setNotes(newNotes);
   }
 
-  const upNote = (id, noteText) => {
-    if(noteText.trim().length > 0){
-      const newNotes = notes.map(note => {
-        if (note.id === id) note.text = noteText
-        return note
-      })
-      console.log(newNotes)
-      setNotes(newNotes);
-      setNoteText('');
-    } 
-    setIsModalVisible(false)
-  }
+
  
   //Add note - Modal
 
@@ -96,15 +91,87 @@ const App = () => {
     setIsModalVisible(false)
   }
 
+  // Update
+
+  const upNote = (id, noteText) => {
+    if(noteText.trim().length > 0){
+      const newNotes = notes.map(note => {
+        if (note.id === id) note.text = noteText
+        return note
+      })
+      console.log(newNotes);
+      setNotes(newNotes);
+      setNoteText('');
+    } 
+    setIsModalVisible(false)
+  }
+
+  const home = "home"
+  const work = "work"
+  const personal = "personal"
+
+  const homeSearch = () => {
+    const searchNotes = notes.filter((note)=> {
+      if (note.text.toLowerCase().includes(home)){
+        return note
+      }
+    })
+      console.log(searchNotes);
+      setSearchText(searchNotes);
+  }
   
+  const onHomeButtonClick = () =>{
+    setShowPersonalComponent(false)
+    setShowWorkComponent(false)
+     setShowHomeComponent(true)
+  }
+
+  const onWorkButtonClick = () =>{
+    setShowPersonalComponent(false)
+    setShowHomeComponent(false)
+    setShowWorkComponent(true)
+  }
+
+  const onPersonalButtonClick = () =>{
+    setShowWorkComponent(false)
+    setShowHomeComponent(false)
+    setShowPersonalComponent(true)
+  }  
+
+  const offButtonClick = () =>{
+    setShowWorkComponent(false)
+    setShowHomeComponent(false)
+    setShowPersonalComponent(false)
+    setShowComponent(true)
+ }
+
 
   return(
     <div className={`${darkMode && 'dark-mode'}`}>
       <div className="container">
           <Header handleToggleDarkMode={setDarkMode}/>
           <Search handleSearchNote={setSearchText}/>
-          <button className="open" onClick={() => setIsModalVisible(true)}>+ ADD NOTE</button>
+          
+          <button className="all" onClick={offButtonClick}>All</button>
+          <button className="home" onClick={onHomeButtonClick}>Home</button>
+          <button className="work" onClick={onWorkButtonClick}>Work</button>
+          <button className="personal" onClick={onPersonalButtonClick}>Personal</button>
+
+          {showHomeComponent ? 
+          <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(home))} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/> 
+          : showWorkComponent ?
+          <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(work))} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/>
+          : showPersonalComponent?
+           <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(personal))} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/>
+          : showComponent ?
           <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(searchText))} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/>
+          : null
+          }
+          
+          <button className="open" onClick={() => setIsModalVisible(true)}>+ ADD NOTE</button>
+          
+
+
           {isModalVisible ? <Modal onClose={() => setIsModalVisible(false)}>
           <div className="note new">
             <textarea rows="8" cols="10" placeholder="Type to add a new note" onChange={handleChange} value={noteText}>

@@ -1,5 +1,3 @@
-
-import AddNote from './AddNote';
 import Note from './Note';
 
 const NotesList = ({ handleUpdateClick, notes, handleAddNote, handleDeleteNote, updateNotes }) => {
