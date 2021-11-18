@@ -77,6 +77,7 @@ const App = () => {
   }
 
 
+
  
   //Add note - Modal
 
@@ -110,19 +111,15 @@ const App = () => {
     setIsModalVisible(false)
   }
 
-let n = ''
-
-  const selectedTypeinNote = () => {
-    const selectedNotes = notes.map(note => {
-      if(note.type === 'home'){
-       n = notes.filter((note)=>note.text.toLowerCase().includes(home))
-      } else if (note.type === 'work'){
-        n = notes.filter((note)=>note.text.toLowerCase().includes(work))
-      } else if (note.type === 'personal'){
-        n = notes.filter((note)=>note.text.toLowerCase().includes(personal))
+  const filterNote = () => {
+    const handleType = notes.filter(note =>{
+      if(note.type === selectedOption){
+        return note
       }
     })
+    console.log(handleType)
   }
+  
 
   const home = 'home'
   const work = "work"
