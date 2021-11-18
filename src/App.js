@@ -66,6 +66,19 @@ const App = () => {
     setNotes(newNotes);
   }
 
+  const upNote = (id, noteText) => {
+    if(noteText.trim().length > 0){
+      const newNotes = notes.map(note => {
+        if (note.id === id) note.text = noteText
+        return note
+      })
+      console.log(newNotes)
+      setNotes(newNotes);
+      setNoteText('');
+    } 
+    setIsModalVisible(false)
+  }
+ 
   //Add note - Modal
 
   const [noteText,setNoteText] = useState('');
@@ -83,7 +96,7 @@ const App = () => {
     setIsModalVisible(false)
   }
 
- 
+  
 
   return(
     <div className={`${darkMode && 'dark-mode'}`}>
@@ -91,7 +104,7 @@ const App = () => {
           <Header handleToggleDarkMode={setDarkMode}/>
           <Search handleSearchNote={setSearchText}/>
           <button className="open" onClick={() => setIsModalVisible(true)}>+ ADD NOTE</button>
-          <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(searchText))} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={handleSaveClick}/>
+          <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(searchText))} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/>
           {isModalVisible ? <Modal onClose={() => setIsModalVisible(false)}>
           <div className="note new">
             <textarea rows="8" cols="10" placeholder="Type to add a new note" onChange={handleChange} value={noteText}>
