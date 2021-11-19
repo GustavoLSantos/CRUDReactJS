@@ -169,8 +169,8 @@ textarea:focus{
 }
 
 .home-btn, .work-btn, .personal-btn{
-    color: #ABABAB;
-    background-color: transparent;
+  color: #ABABAB;
+  background-color: transparent;
 }
 
 .all-btn{
@@ -191,3 +191,8 @@ textarea:focus{
   margin-right: 10px;
 }
 
+.note-header {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}

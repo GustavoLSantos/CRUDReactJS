@@ -16,11 +16,14 @@ const Note = ({ handleUpdateClick, id, type, text, date, handleDeleteNote }) => 
 
     return (
         <div className={type}>
+            <div className="note-header">
+                <BsFillBrushFill onClick={() => setIsModalVisible(true)}/>
+                <MdDeleteForever onClick={() => handleDeleteNote(id)} className='delete-icon' size='1.3em' />
+            </div>
+
             <span>{text}</span>
             <div className="note-footer">
                 <small>{date}</small>
-                <MdDeleteForever onClick={() => handleDeleteNote(id)} className='delete-icon' size='1.3em' />
-                <BsFillBrushFill onClick={() => setIsModalVisible(true)}/>
                 {isModalVisible ? <Modal onClose={() => setIsModalVisible(false)}>
                 <div className="note new">
                     <textarea className="update-note" rows="8" cols="10" placeholder={text} onChange={handleChange} value={noteText}>
