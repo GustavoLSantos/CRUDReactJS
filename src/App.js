@@ -121,12 +121,15 @@ const App = () => {
       <div className="container">
           <Header handleToggleDarkMode={setDarkMode}/>
           <Search handleSearchNote={setSearchText}/>
+          <div className="buttons-header">
+            <button className="all-btn" onClick={()=>{setS("all")}}>All</button>
+            <button className="home-btn" onClick={()=>{setS("home")}}>Home</button>
+            <button className="work-btn" onClick={()=>{setS("work")}}>Work</button>
+            <button className="personal-btn" onClick={()=>{setS("personal")}}>Personal</button>
+            <button className="open" onClick={() => setIsModalVisible(true)}>+ ADD NOTE</button>
+          </div>
           
-          <button className="all" onClick={()=>{setS("all")}}>All</button>
-          <button className="home" onClick={()=>{setS("home")}}>Home</button>
-          <button className="work" onClick={()=>{setS("work")}}>Work</button>
-          <button className="personal" onClick={()=>{setS("personal")}}>Personal</button>
-          <button className="open" onClick={() => setIsModalVisible(true)}>+ ADD NOTE</button>
+          
           {s==="all" ? <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(searchText))} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/>
           : <NotesList notes={notes.filter(n => n.type === s )} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/> }
           

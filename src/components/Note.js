@@ -11,10 +11,11 @@ const Note = ({ handleUpdateClick, id, type, text, date, handleDeleteNote }) => 
     const [noteText,setNoteText] = useState('');
     const handleChange = (event) => {
         setNoteText(event.target.value);
-    }
+    }   
+   
 
     return (
-        <div className="note">
+        <div className={type}>
             <span>{text}</span>
             <div className="note-footer">
                 <small>{date}</small>
