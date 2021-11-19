@@ -12,19 +12,19 @@ const App = () => {
   const [notes,setNotes] = useState([
     {
       id: nanoid(),
-      type: { value: 'work', label: 'Work' },
+      type: 'work',
       text: "This is my first work note",
       date: "17/11/2021"
     },
     {
       id: nanoid(),
-      type: { value: 'personal', label: 'Personal' },
+      type: 'personal',
       text: "This is my second note",
       date: "17/11/2021"
     },
     {
       id: nanoid(),
-      type: { value: 'home', label: 'Home' },
+      type: 'home',
       text: "This is my third note",
       date: "17/11/2021"
     },
@@ -109,29 +109,6 @@ const App = () => {
 
   const [s, setS] = useState("personal");
 
-  const home = 'home'
-  const work = "work"
-  const personal = "personal"
-  
-
-  const onHomeButtonClick = () =>{
-    setShowPersonalComponent(false)
-    setShowWorkComponent(false)
-    setShowHomeComponent(true)
-  }
-
-  const onWorkButtonClick = () =>{
-    setShowPersonalComponent(false)
-    setShowHomeComponent(false)
-    setShowWorkComponent(true)
-  }
-
-  const onPersonalButtonClick = () =>{
-    setShowWorkComponent(false)
-    setShowHomeComponent(false)
-    setShowPersonalComponent(true)
-  }  
-
   const offButtonClick = () =>{
     setShowWorkComponent(false)
     setShowHomeComponent(false)
@@ -145,14 +122,14 @@ const App = () => {
           <Header handleToggleDarkMode={setDarkMode}/>
           <Search handleSearchNote={setSearchText}/>
           
-          <button className="all" onClick={offButtonClick}>All</button>
+          <button className="all" onClick={()=>{setS("all")}}>All</button>
           <button className="home" onClick={()=>{setS("home")}}>Home</button>
           <button className="work" onClick={()=>{setS("work")}}>Work</button>
           <button className="personal" onClick={()=>{setS("personal")}}>Personal</button>
           <button className="open" onClick={() => setIsModalVisible(true)}>+ ADD NOTE</button>
-          {notes.filter(n => n.type === s ).map((note)=> (
-                <div> { note.text } </div>
-            ))}
+          {s==="all" ? <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(searchText))} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/>
+          : <NotesList notes={notes.filter(n => n.type === s )} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/> }
+          
           {isModalVisible ? <Modal onClose={() => setIsModalVisible(false)}>
           <div className="note new">
             <textarea rows="8" cols="10" placeholder="Type to add a new note" onChange={handleChange} value={noteText}>
@@ -164,6 +141,7 @@ const App = () => {
               console.log(selectedItem);
               setSelectedOption(selectedItem);
             }}>
+              <option value="notype">Choose a type:</option>
               <option value="work">Work</option>
               <option value="home">Home</option>
               <option value="personal">Personal</option>
