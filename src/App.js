@@ -3,6 +3,8 @@ import NotesList from "./components/NotesList";
 import { nanoid } from 'nanoid';
 import Search from "./components/Search";
 import Modal from "./components/Modal"; 
+import { LinearProgress } from "@material-ui/core";
+
                 
 
 const App = () => {

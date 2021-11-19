@@ -266,6 +266,7 @@ textarea:focus{
 .title-header{
   font-size: 25px;
   margin-right: auto;
+  margin-left: -10px;
   color: #FFFFFF;
 }
 

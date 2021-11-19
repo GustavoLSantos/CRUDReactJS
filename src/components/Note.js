@@ -2,7 +2,9 @@ import React from 'react';
 import { useState } from "react";
 import Modal from "./Modal";          
 import Checkbox from '@material-ui/core/Checkbox';
+import { LinearProgress } from '@material-ui/core';
 
+export var selected = 0;
 
 const Note = ({ handleUpdateClick, id, title, type, text, date, handleDeleteNote }) => {
 
@@ -13,16 +15,26 @@ const Note = ({ handleUpdateClick, id, title, type, text, date, handleDeleteNote
         setNoteText(event.target.value);
     }   
 
-
     const toggleCheckbox = event => {
+        
         setChecked(event.target.checked);
+        if(checked===false){
+            selected++
+        }else if(checked===true){
+            selected--
+        }
+        console.log(checked)
+        console.log(selected)
     }
 
+    const progress = selected/0.04;
+
+    
     return (
         <div className={type}>
             <div className="note-header">
-                <Checkbox checked={checked} color="default" value={text} onChange={toggleCheckbox}/>
-                <span className="title-header">{title}</span>
+                <Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }} style ={{color: "#FFFF",left: "-10px"}} checked={checked} color="default" value={text} onChange={toggleCheckbox}/>
+                <span className="title-header">{checked ? <strike>{title}</strike> : title}</span>
                 <span class="material-icons" onClick={() => setIsModalVisible(true)}>edit</span>
                 <span class="material-icons" onClick={() => handleDeleteNote(id)}>delete</span>
             </div>
@@ -43,11 +55,10 @@ const Note = ({ handleUpdateClick, id, title, type, text, date, handleDeleteNote
                     </div>
                 </div>
             </div>
-            
             </Modal> : null}
             <span>{checked ? <strike>{text}</strike> : text}</span>
             <div className="note-footer">
-                <small>{date}</small>
+                <small>{checked ? <strike>{date}</strike> : date}</small>
             </div>
         </div>
     )
