@@ -1,16 +1,13 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #F5F5F5;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'roboto';
 }
 
 .container {
@@ -23,15 +20,53 @@ code {
 }
 
 .note.new {
-  background-color: #F4F4F4;
-  display: flex;
   padding-top: 10px;
   margin-top: 30px;
-  width: 100vh;
-  height: 50vh;
+  width: 500px;
+  padding-left: 30px;
+
 }
 
+.header-notenew{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vh;
+  margin-bottom: 30px;  
+}
+.header-noteupdate{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vh;
+  margin-bottom: 30px;
+  padding-left: 30px;
+}
 
+.select-newnote{
+  height: 34px;
+  font-size: 20px;
+  background-color: #F4F4F4;
+  width: 50vh;
+  border: none;
+}
+
+.title-field {
+  background-color: #F4F4F4;
+  width: 50vh;
+  height: 30px;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.description-field{
+  background-color: #F4F4F4;
+  width: 49vh;
+  font-size: 18px;
+  height: 300px;
+  border-radius: 5px;
+  
+}
 
 .cancel {
   color: #2196F3;
@@ -42,15 +77,6 @@ code {
   cursor: pointer;
 }
 
-textarea {
-  border: none;
-  resize: none;
-  background-color: #F4F4F4;
-}
-
-textarea:focus{
-  outline: none;
-}
 
 .save{
   color: #2196F3;
@@ -67,10 +93,22 @@ textarea:focus{
   transition: all 0.2s ease-in;
 }
 
+textarea {
+  border: none;
+  resize: none;
+  background-color: #F4F4F4;
+}
+
+textarea:focus{
+  outline: none;
+}
+
+
+
 .home, .work, .personal {
   border-radius: 10px;
   padding: 1rem;
-  min-height: 200px;
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -80,21 +118,35 @@ textarea:focus{
 
 .home{
   background-color: #FF9100;
+  color: #FFE9CC;
 }
 
 .work{
   background-color: #818CCE;
+  color: #DEE1F2;
 }
 
 .personal{
   background-color: #66BB6A;
+  color: #E0F1E1;
 }
 
 
 .note-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  position: relative;
+  top: 10px;
+  right: -85%;
+
+}
+
+.note-footer-create {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 10px;
+  right: -165%;
 }
 
 .notes-list {
@@ -116,6 +168,7 @@ textarea:focus{
   margin-bottom: 1.5em;
   min-height: 30px;
   box-shadow: 5px 5px 10px rgb(204, 204, 204);
+  margin-top: 80px;
 }
 
 .search input {
@@ -127,34 +180,47 @@ textarea:focus{
   outline: none;
 }
 
-.dark-mode{
-  background-color: rgb(36, 36, 36);
-}
-
-.dark-mode h1{
-  color: rgb(241, 241, 241);
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .update-note {
-  border: none;
-  resize: none;
   background-color: #F4F4F4;
-  display: flex;
-  padding-top: 10px;
-  margin-top: 30px;
-  width: 100vh;
-  height: 50vh;
+  width: 49vh;
+  font-size: 18px;
+  height: 300px;
+  border-radius: 5px;
 }
 
 .buttons-header{
   display: flex;
   align-items: center;
+}
+
+.home-ball{
+  width: 5px;
+  height: 5px;
+  background-color: #FF9100;
+  border-radius: 50%;
+  position: relative;
+  top: -37px;
+  right: -45px;
+}
+
+.work-ball {
+  width: 5px;
+  height: 5px;
+  background-color: #5C6BC0;
+  border-radius: 50%;
+  position: relative;
+  top: -37px;
+  right: -45px; 
+}
+
+.personal-ball {
+  width: 5px;
+  height: 5px;
+  background-color: #66BB6A;
+  border-radius: 50%;
+  position: relative;
+  top: -37px;
+  right: -45px; 
 }
 
 
@@ -169,8 +235,9 @@ textarea:focus{
 }
 
 .home-btn, .work-btn, .personal-btn{
-  color: #ABABAB;
+  color: #808080;
   background-color: transparent;
+  font-size: 16px;
 }
 
 .all-btn{
@@ -194,5 +261,52 @@ textarea:focus{
 .note-header {
   display: flex;
   align-items: center;
-  margin-left: auto;
+}
+
+.title-header{
+  font-size: 25px;
+  margin-right: auto;
+  color: #FFFFFF;
+}
+
+.description-field-update{
+  padding-left: 30px;
+}
+
+.note-new-update{
+   padding-top: 10px;
+  margin-top: 30px;
+  width: 500px;
+  padding-left: 30px;
+}
+
+.update-container{
+  padding-top: 30px;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  cursor: pointer;
+  padding: 5px;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
