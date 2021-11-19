@@ -31,19 +31,7 @@ code {
   height: 50vh;
 }
 
-.open {
-  background-color: #2196F3;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 5px 5px 10px rgb(204, 204, 204);
-  cursor: pointer;
-  color: #fff;
-  height: 2.5rem;
-  width: 8rem;
-  position:relative;
-  left: 87.5vh;
-  margin-bottom: 30px;
-}
+
 
 .cancel {
   color: #2196F3;
@@ -79,8 +67,7 @@ textarea:focus{
   transition: all 0.2s ease-in;
 }
 
-.note{
-  background-color: #fef68a;
+.home, .work, .personal {
   border-radius: 10px;
   padding: 1rem;
   min-height: 200px;
@@ -88,7 +75,21 @@ textarea:focus{
   flex-direction: column;
   justify-content: space-between;
   white-space: pre-wrap;
+  color: #fff;
 }
+
+.home{
+  background-color: #FF9100;
+}
+
+.work{
+  background-color: #818CCE;
+}
+
+.personal{
+  background-color: #66BB6A;
+}
+
 
 .note-footer {
   display: flex;
@@ -99,7 +100,7 @@ textarea:focus{
 .notes-list {
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 .delete-icon {
@@ -150,3 +151,43 @@ textarea:focus{
   width: 100vh;
   height: 50vh;
 }
+
+.buttons-header{
+  display: flex;
+  align-items: center;
+}
+
+
+.all-btn, .home-btn, .work-btn, .personal-btn, .open {
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 6rem;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.home-btn, .work-btn, .personal-btn{
+    color: #ABABAB;
+    background-color: transparent;
+}
+
+.all-btn{
+  background-color: #69BCFF;
+  color: #fff;
+}
+
+.open {
+  position: relative;
+  margin-left: auto;
+  background-color: #2196F3;
+  box-shadow: 5px 5px 10px rgb(204, 204, 204);
+  color: #fff;
+  width: 8rem;
+}
+
+.all-btn, .home-btn, .work-btn, .personal-btn {
+  margin-right: 10px;
+}
+
