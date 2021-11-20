@@ -172,6 +172,7 @@ textarea:focus{
 }
 
 .search input {
+  width: 1000px;
   border: none;
   background-color: rgb(253,253,253);
 }
@@ -310,4 +311,13 @@ textarea:focus{
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+.progressbar {
+  padding-bottom: 30px;
+}
+
+.progressbar h2{
+  font-size: 18px;
+  color: #626262;
 }

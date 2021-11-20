@@ -6,7 +6,7 @@ import { LinearProgress } from '@material-ui/core';
 
 export var selected = 0;
 
-const Note = ({ handleUpdateClick, id, title, type, text, date, handleDeleteNote }) => {
+const Note = ({ handleSelectedBoxes, handleUpdateClick, id, title, type, text, date, handleDeleteNote }) => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [noteText,setNoteText] = useState('');
@@ -23,8 +23,7 @@ const Note = ({ handleUpdateClick, id, title, type, text, date, handleDeleteNote
         }else if(checked===true){
             selected--
         }
-        console.log(checked)
-        console.log(selected)
+        handleSelectedBoxes(selected)
     }
 
     const progress = selected/0.04;
@@ -57,7 +56,7 @@ const Note = ({ handleUpdateClick, id, title, type, text, date, handleDeleteNote
             </div>
             </Modal> : null}
             <span>{checked ? <strike>{text}</strike> : text}</span>
-            <div className="note-footer">
+            <div className="note-footer-date">
                 <small>{checked ? <strike>{date}</strike> : date}</small>
             </div>
         </div>

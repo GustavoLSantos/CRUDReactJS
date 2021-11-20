@@ -5,7 +5,7 @@ import Search from "./components/Search";
 import Modal from "./components/Modal"; 
 import { LinearProgress } from "@material-ui/core";
 
-                
+var selected = 0;      
 
 const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -112,11 +112,24 @@ const App = () => {
     setIsModalVisible(false)
   }
 
+  const [manyChecked, setManyChecked] = useState(0);
+
+  const notesSize = Object.keys(notes).length
+
+  const updateCheck = (checkAmount) => {
+    var x = selected + checkAmount;
+    setManyChecked(x);
+  }
+
+  var progress = manyChecked/(notesSize/100)
+
   const [s, setS] = useState("all");
 
   return(
     <div>
       <div className="container">
+        
+        
           <Search handleSearchNote={setSearchText} />
           <div className="buttons-header">
           <button className="all-btn" onClick={()=>{setS("all")}}>All</button>
@@ -134,10 +147,13 @@ const App = () => {
             </div>
             <button className="open" onClick={() => setIsModalVisible(true)}>+ ADD NOTE</button>
           </div>
-          
-          
-          {s==="all" ? <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(searchText))} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/>
-          : <NotesList notes={notes.filter(n => n.type === s )} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/> }
+          <div className="progressbar">
+            <h2>You have {manyChecked}/{notesSize} notes completed</h2>
+            <LinearProgress variant="determinate" value={progress}/>  
+        </div>
+
+          {s==="all" ? <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(searchText))} handleSelectedBoxes={updateCheck} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/>
+          : <NotesList notes={notes.filter(n => n.type === s )} handleSelectedBoxes={updateCheck} handleAddNote={AddNote} handleDeleteNote={deleteNote} handleUpdateClick={upNote}/> }
           
           {isModalVisible ? <Modal className="modal-newnote" onClose={() => setIsModalVisible(false)}>
           <div className="note new">
