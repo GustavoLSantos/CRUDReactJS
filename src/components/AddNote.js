@@ -19,9 +19,7 @@ const AddNote = ({handleAddNote}) => {
 
     return(
         <div className="note new">
-            <textarea rows="8" cols="10" placeholder="Type to add a new note" onChange={handleChange} value={noteText}>
-        
-            </textarea>
+            <textarea rows="8" cols="10" placeholder="Type to add a new note" onChange={handleChange} value={noteText}></textarea>
             <div className="note-footer">
                 <button className="save" onClick={handleSaveClick}>Save</button>
             </div>
