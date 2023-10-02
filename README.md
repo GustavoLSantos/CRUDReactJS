@@ -21,6 +21,7 @@
 
 ### Sobre
  - O projeto Notes App é um CRUD que permite separar uma lista de tarefas entre Casa, Trabalho e Pessoal e marcá-las quando concluído. Uma barra horizontal marca o progresso.
+ - OBS: Podem ocorrer problemas de versão do REACT caso clone o projeto na sua máquina.
 
 ### Funcionalidades
 
